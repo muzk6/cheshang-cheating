@@ -1,32 +1,40 @@
-(function () {
-    function start() {
-        play();
-        continueCheating();
+class Muzk6 {
+    constructor(test = 0) {
+        this.test = test;
+
+        let instance = this;
+        window.endHandler = function () {
+            $("#nyv").val(watchTime);
+            $("#iptflag").val("0");
+            clearwt();
+            rc();
+            $("#btnsavexs").attr("disabled", "disabled");
+            CKobject.getObjectById('ckplayer_a1').videoClear();
+            setTimeout(() => instance.play(), 3000);
+        };
     }
 
-    function play() {
-        $('#ulTreeList a[class!=haveClick]:first')[0].click();
+    start() {
+        this.play();
+        this.continueCheating();
     }
 
-    function continueCheating() {
-        setInterval(function () {
+    play() {
+        if (this.test) {
+            change('1010201');
+        } else {
+            $('#ulTreeList a[class!=haveClick]:first')[0].click();
+        }
+    }
+
+    continueCheating() {
+        setInterval(() => {
             if (!$('#dialog_content1').is(':hidden')) {
                 checkOnline();
             }
         }, 3000);
     }
+}
 
-    window.endHandler = function () {
-        $("#nyv").val(watchTime);
-        $("#iptflag").val("0");
-        clearwt();
-        rc();
-        $("#btnsavexs").attr("disabled", "disabled");
-        CKobject.getObjectById('ckplayer_a1').videoClear();
-        setTimeout(function () {
-            play();
-        }, 3000);
-    };
-
-    start();
-})();
+let obj = new Muzk6();
+obj.start();

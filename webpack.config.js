@@ -1,7 +1,7 @@
 var path = require('path');
-var webpack = require('webpack');
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
+var process = require('process');
 
+var env = process.env.NODE_ENV || 'dev';
 var config = {
     entry: {
         app: path.resolve(__dirname, 'src/app.js'),
@@ -10,7 +10,7 @@ var config = {
         extensions: ['', '.coffee', '.js']
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, (env === 'dev' ? 'build' : 'dist')),
         filename: '[name].js'
     },
     module: {

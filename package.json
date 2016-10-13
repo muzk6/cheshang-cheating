@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack -w",
-    "pub": "webpack -p"
+    "pub": "set NODE_ENV=publish&& webpack -p"
   },
   "author": "muzk6",
   "license": "ISC",
