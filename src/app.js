@@ -23,7 +23,14 @@ class Muzk6 {
         if (this.test) {
             change('1010201');
         } else {
-            $('#ulTreeList a[class!=haveClick]:first')[0].click();
+            let unWatch = $('#ulTreeList a[class!=haveClick]:first');
+            if (unWatch.length) {
+                unWatch[0].click();
+            } else {
+                let watched = $('#ulTreeList a[class*=haveClick]');
+                let index = (new Date()).getTime() % watched.length;
+                watched.eq(index)[0].click();
+            }
         }
     }
 
