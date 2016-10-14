@@ -1,7 +1,6 @@
 var path = require('path');
 var process = require('process');
 
-var env = process.env.NODE_ENV || 'dev';
 var config = {
     entry: {
         app: path.resolve(__dirname, 'src/app.js'),
@@ -10,7 +9,7 @@ var config = {
         extensions: ['', '.coffee', '.js']
     },
     output: {
-        path: path.resolve(__dirname, (env === 'dev' ? 'build' : 'dist')),
+        path: path.resolve(__dirname, env('build', 'dist')),
         filename: '[name].js'
     },
     module: {
@@ -24,3 +23,11 @@ var config = {
 };
 
 module.exports = config;
+
+function env(outputDevStr, outputPubStr) {
+    if (process.env.NODE_ENV === 'publish') {
+        return outputPubStr;
+    } else {
+        return outputDevStr;
+    }
+}
