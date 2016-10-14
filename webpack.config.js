@@ -18,8 +18,7 @@ var config = {
             exclude: /node_modules/,
             loader: 'babel?presets=es2015'
         }]
-    }
-
+    },
 };
 
 module.exports = config;
